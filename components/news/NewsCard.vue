@@ -9,7 +9,7 @@
                     <v-card-title class="headline" v-text="title" />
                 </n-link>
                 <v-card-subtitle class="pt-0" v-text="subtitle" />
-                <v-card-text class="card-text" v-html="content" />
+                <v-card-text v-dompurify-html="content" class="card-text" />
             </div>
         </div>
     </v-card>

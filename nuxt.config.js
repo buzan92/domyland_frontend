@@ -36,6 +36,7 @@ export default {
   */
   plugins: [
     '~/plugins/axios',
+    '~/plugins/dom_purify',
     { src: '~/plugins/tiptap_vuetify', mode: 'client' },
   ],
   /*
