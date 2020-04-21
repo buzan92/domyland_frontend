@@ -1,10 +1,25 @@
 <template>
     <v-form v-model="isValid">
-        <v-text-field v-model="form.title" label="Заголовок*" required outlined />
-        <v-textarea v-model="form.content" label="Teкст*" outlined />
-        <v-text-field v-model="form.image" label="URL изображения" outlined />
+        <v-text-field
+            v-model="form.title"
+            :rules="[v => !!v || 'Укажите заголовок новости']"
+            label="Заголовок*"
+            outlined
+        />
+        <Editor v-model="form.content" class="mb-4" />
+        <div class="d-flex align-center">
+            <v-avatar class="mr-3" size="100" tile>
+                <v-img :lazy-src="require('~/assets/noimage.png')" :src="form.image" />
+            </v-avatar>
+            <v-text-field
+                v-model="form.image"
+                label="URL изображения"
+                hide-details
+                outlined
+            />
+        </div>
         <div class="text-right">
-            <v-btn :disabled="!isValid" color="primary" @click="$emit('save', form)">
+            <v-btn :disabled="!isValid || !form.content" color="primary" @click="$emit('save', form)">
                 Сохранить
             </v-btn>
         </div>
@@ -14,6 +29,11 @@
 <script>
 export default {
   name: 'NewsForm',
+  components: {
+    Editor: () => process.client
+      ? import('~/components/ui/Editor')
+      : Promise.resolve({ render: h => h('div', 'Загрузка...') }),
+  },
   props: {
     newsItem: Object,
   },

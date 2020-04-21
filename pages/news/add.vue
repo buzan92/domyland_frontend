@@ -4,7 +4,7 @@
             Добавить новость
         </h2>
         <NewsForm
-            v-bind="{ newsItem: detail }"
+            v-bind="{ newsItem }"
             @save="addNews($event)"
         />
     </v-card>

@@ -13,7 +13,7 @@ export const actions = {
   async getNews({ commit, dispatch }) {
     try {
       const res = await this.$axios.get('/feeds');
-      commit('SET_NEWS', res?.data?.feeds);
+      if (res?.data?.feeds) commit('SET_NEWS', res?.data?.feeds);
     } catch (err) {
       const error = err?.response?.data?.error || 'Что-то пошло не так';
       dispatch('sendErrorNotification', error, { root: true });
@@ -22,8 +22,10 @@ export const actions = {
   async addNews({ commit, dispatch }, newsItem) {
     try {
       const res = await this.$axios.post('/feeds', newsItem);
-      commit('ADD_NEWS', res?.data?.feed);
-      dispatch('sendSuccessNotification', 'Новость добавлена', { root: true });
+      if (res?.data?.feed) {
+        commit('ADD_NEWS', res?.data?.feed);
+        dispatch('sendSuccessNotification', 'Новость добавлена', { root: true });
+      }
     } catch (err) {
       const error = err?.response?.data?.error || 'Что-то пошло не так';
       dispatch('sendErrorNotification', error, { root: true });
@@ -32,8 +34,10 @@ export const actions = {
   async getDetail({ commit }, id) {
     try {
       const { data } = await this.$axios.get(`/feeds/${id}`);
-      commit('SET_DETAIL', data?.feed || {});
-      return true;
+      if (data?.feed) {
+        commit('SET_DETAIL', data?.feed || {});
+        return true;
+      }
     } catch (err) {
       return false;
     }

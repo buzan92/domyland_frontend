@@ -8,7 +8,5 @@ export default function({ $axios, app, redirect }) {
       app.store.dispatch('sendErrorNotification', 'Чтобы продолжнить необходимо авторизоваться', { root: true });
       redirect('/');
     }
-
-    return {};
   });
 }

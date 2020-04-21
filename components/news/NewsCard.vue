@@ -2,7 +2,6 @@
     <v-card class="mb-3">
         <div class="d-flex flex-no-wrap justify-start">
             <v-avatar class="ma-3" size="200" tile>
-                <!-- https://cdn.vuetifyjs.com/images/cards/store.jpg -->
                 <v-img :lazy-src="require('~/assets/noimage.png')" :src="image" />
             </v-avatar>
             <div>
@@ -10,7 +9,7 @@
                     <v-card-title class="headline" v-text="title" />
                 </n-link>
                 <v-card-subtitle class="pt-0" v-text="subtitle" />
-                <v-card-text v-text="content" />
+                <v-card-text class="card-text" v-html="content" />
             </div>
         </div>
     </v-card>
@@ -37,3 +36,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.card-text {
+  max-height: 200px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+</style>

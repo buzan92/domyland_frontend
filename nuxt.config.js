@@ -36,6 +36,7 @@ export default {
   */
   plugins: [
     '~/plugins/axios',
+    { src: '~/plugins/tiptap_vuetify', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -99,6 +100,7 @@ export default {
   ** Build configuration
   */
   build: {
+    transpile: ['tiptap-vuetify'],
     /*
     ** You can extend webpack config here
     */

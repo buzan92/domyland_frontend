@@ -42,5 +42,6 @@ module.exports = {
       "ignores": []
     }],
     "vue/require-default-prop": 'off',
+    "vue/no-v-html": 'off',
   }
 }
