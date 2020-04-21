@@ -6,7 +6,7 @@
             </n-link>
             <v-spacer />
             <template v-if="loggedIn">
-                {{ user }}
+                {{ user.displayName || '' }}
                 <span class="px-2">|</span>
                 <a href="#" @click.prevent="signOut">
                     Выйти

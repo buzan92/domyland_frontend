@@ -17,6 +17,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
   },
+  server: {
+    port: 3000,
+    host: 'localhost',
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -62,11 +66,11 @@ export default {
         endpoints: {
           login: { url: '/auth', method: 'post', propertyName: 'token' },
           logout: false,
-          user: false,
+          user: { url: '/auth/me', method: 'get', propertyName: 'data' },
         },
         tokenName: 'x-access-token',
         tokenType: '',
-        autoFetchUser: false,
+        autoFetchUser: true,
       },
     },
   },
